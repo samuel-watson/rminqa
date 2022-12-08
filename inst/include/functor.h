@@ -45,11 +45,11 @@ public:
   void Gradient(const T &par, const T &grad){
     if (os.parscale_.empty()) {
       os.parscale_ = T(par.size());
-      os.parscale_.fill(1.0);
+      for(int i = 0; i< par.size(); i++)os.parscale_[i] = 1.0;
     } 
     if (os.ndeps_.empty()){
       os.ndeps_ = T(par.size());
-      os.ndeps_.fill(1e-6);
+      for(int i = 0; i< par.size(); i++)os.ndeps_[i] = 1e-6;
     }
     
     grad = T(par.size(),0.0);;// arma::zeros<arma::vec>(par.size());
@@ -109,15 +109,15 @@ public:
     int n = par.size();
     if (os.parscale_.empty()) {
       os.parscale_ = T(par.size());
-      os.parscale_.fill(1.0);
+      for(int i = 0; i< par.size(); i++)os.parscale_[i] = 1.0;
     } 
     if (os.ndeps_.empty()){
       os.ndeps_ = T(par.size());
-      os.ndeps_.fill(1e-3);
+      for(int i = 0; i< par.size(); i++)os.ndeps_[i] = 1e-3;
     }
     
     //hess = std::vector<double>(n*n,0.0);// arma::zeros<arma::mat>(par.size(), par.size());
-    hess.fill(0.0);
+    for(int i = 0; i< hess.size(); i++)hess[i] = 0.0;
     std::vector<double> dpar(n);// = par / os.parscale_;
     for(int i = 0; i < n; i++)dpar[i] = par[i]/os.parscale_[i];
     std::vector<double> df1(n,0.0);
