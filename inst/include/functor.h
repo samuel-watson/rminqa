@@ -42,7 +42,7 @@ public:
   virtual double operator()(const std::vector<double> &par) = 0;
   
   // do we need virtual gradient and hessian functions? will they ever be overridden?
-  void Gradient(const T &par, const T &grad){
+  void Gradient(const T &par, T &grad){
     if (os.parscale_.empty()) {
       os.parscale_ = T(par.size());
       for(int i = 0; i< par.size(); i++)os.parscale_[i] = 1.0;
